@@ -10,11 +10,10 @@ namespace BuenasPracticas.DTO
         public DateTime dtFechaEnvio { get; set; }
         public DateTime dtFechaEntrega { get; set; }
         public decimal dDistancia { get; set; }
-        public string cPaísOrigen { get; set; }
-        public string cCiudadOrigen { get; set; }
-        public string cPaísDestino { get; set; }
-        public string cCiudadDestino { get; set; }
+        public string cOrigen { get; set; }
+        public string cDestino { get; set; }
         public decimal dCostosEnvio { get; set; }
         public string cPaqueteria { get;  set; }
+        public string cTipotiempo { get; set; }
     }
 }

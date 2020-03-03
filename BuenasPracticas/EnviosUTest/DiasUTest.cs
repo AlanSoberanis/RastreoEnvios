@@ -10,14 +10,14 @@ namespace EnviosUTest
     {
 
         [TestMethod]
-        public void ObtenerFormatoTiempo_SesentaHoras_Dias()
+        public void ObtenerFormatoTiempo_SesentaHoras_DosDias()
         {
 
             var Sut = new Dias();
             var DOC_Horas = new Mock<IFormatoTiempo>();
             DOC_Horas.Setup(x => x.ObtenerFormatoTiempo(It.IsAny<decimal>())).Returns("0 Meses");
             Sut.Siguiente(DOC_Horas.Object);
-            string Resultado = Sut.ObtenerFormatoTiempo(60M);
+            string Resultado = Sut.ObtenerFormatoTiempo(3600M);
             Assert.AreEqual("2 Días", Resultado);
 
         }
@@ -28,20 +28,20 @@ namespace EnviosUTest
             var DOC_Horas = new Mock<IFormatoTiempo>();
             DOC_Horas.Setup(x => x.ObtenerFormatoTiempo(It.IsAny<decimal>())).Returns("1 Mes");
             Sut.Siguiente(DOC_Horas.Object);
-            string Resultado = Sut.ObtenerFormatoTiempo(725M);
+            string Resultado = Sut.ObtenerFormatoTiempo(43500M);
             Assert.AreEqual("1 Mes", Resultado);
 
         }
 
         [TestMethod]
-        public void Siguiente_InvocandoHoras_UnaVez()
+        public void Siguiente_InvocandoMeses_UnaVez()
         {
             int contador = 0;
             var Sut = new Dias();
-            var DOC_Horas = new Mock<IFormatoTiempo>();
-            DOC_Horas.Setup(x => x.ObtenerFormatoTiempo(It.IsAny<decimal>())).Callback(() => contador++);
-            Sut.Siguiente(DOC_Horas.Object);
-            Sut.ObtenerFormatoTiempo(2500M);
+            var DOC_Meses = new Mock<IFormatoTiempo>();
+            DOC_Meses.Setup(x => x.ObtenerFormatoTiempo(It.IsAny<decimal>())).Callback(() => contador++);
+            Sut.Siguiente(DOC_Meses.Object);
+            Sut.ObtenerFormatoTiempo(72000M);
             Assert.AreEqual(1, contador);
 
         }

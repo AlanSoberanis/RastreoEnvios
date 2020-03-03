@@ -1,4 +1,5 @@
 ﻿using BuenasPracticas.clases;
+using BuenasPracticas.DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Globalization;
@@ -8,14 +9,17 @@ namespace EnviosUTest
     [TestClass]
     public class TerrestreUTest
     {
-       
+        ConfiguracionTerrestre configuraciones = new ConfiguracionTerrestre();
+
+
         [TestMethod]
         public void ObtenerCostoxDistancia_Cuarenta_Quince()
         {
+            
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(40, FechaEnvio);
+            var Sut = new Terrestre(40, FechaEnvio,configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
             Assert.AreEqual(15, Resultado);
@@ -26,7 +30,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(90, FechaEnvio);
+            var Sut = new Terrestre(90, FechaEnvio,configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
@@ -38,7 +42,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(250, FechaEnvio);
+            var Sut = new Terrestre(250, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
             Assert.AreEqual(8, Resultado);
@@ -49,7 +53,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(500, FechaEnvio);
+            var Sut = new Terrestre(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
@@ -63,7 +67,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(40, FechaEnvio);
+            var Sut = new Terrestre(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(600, Resultado);
@@ -74,7 +78,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(90, FechaEnvio);
+            var Sut = new Terrestre(90, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -86,7 +90,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(250, FechaEnvio);
+            var Sut = new Terrestre(250, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -98,7 +102,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(500, FechaEnvio);
+            var Sut = new Terrestre(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -112,7 +116,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Terrestre(8000, FechaEnvio);
+            var Sut = new Terrestre(8000, FechaEnvio, configuraciones);
 
             DateTime Resultado = Sut.ObtenerFechaEnvio();
             Assert.AreEqual(FechaEnvio, Resultado);
@@ -122,7 +126,7 @@ namespace EnviosUTest
         public void ObtenerRecargo_General_Cero()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(0, Resultado);
@@ -132,7 +136,7 @@ namespace EnviosUTest
         public void ObtenerTiempoEntregaMinutos_OchocientosPrimavera_SeisMilNovecientosSesenta()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(6960, Resultado);
@@ -141,7 +145,7 @@ namespace EnviosUTest
         public void ObtenerTiempoEntregaMinutos_OchocientosVerano_SieteMilCuatrocientosCuarenta()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/08/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/08/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(7440, Resultado);
@@ -150,7 +154,7 @@ namespace EnviosUTest
         public void ObtenerTiempoEntregaMinutos_OchocientosOtonio_sieteMilDocientos()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(7200, Resultado);
@@ -159,7 +163,7 @@ namespace EnviosUTest
         public void ObtenerTiempoEntregaMinutos_OchocientosInvierno_SieteMilNovecientosVeinte()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(7920, Resultado);
@@ -169,7 +173,7 @@ namespace EnviosUTest
         public void ObtenerVelocidad_Ochenta_Ochenta()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Terrestre(8000, DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Terrestre(8000, DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerVelocidad();
             Assert.AreEqual(80, Resultado);

@@ -67,10 +67,12 @@ namespace BuenasPracticas.clases
             }
         }
 
-        public Maritimo(decimal dDistancia, DateTime dtFechaEnvio)
+
+        public Maritimo(decimal dDistancia, DateTime dtFechaEnvio, ConfiguracionMaritimo configuraciones)
         {
             this.dDistancia = dDistancia;
             this.dtFechaEnvio = dtFechaEnvio;
+            //LstDistancia = configuraciones.Distancias;
         }
 
         public decimal ObtenerCostoEnvio()

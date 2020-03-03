@@ -12,21 +12,28 @@ namespace BuenasPracticas.clases
         readonly string cTransporte;
         readonly string cEmpresa;
         readonly DateTime dtFechaEnvio;
-        public Estafeta(string _cTransporte,DateTime _dtFechaEnvio)
+
+        public Estafeta(string _cTransporte,DateTime _dtFechaEnvio, ConfiguracionEstafeta configuracionEstafeta)
         {
             cTransporte = _cTransporte;
             cEmpresa = "Estafeta";
             dtFechaEnvio = _dtFechaEnvio;
+
         }
+        
 
         private List<Temporadas> _Ganancias =new List<Temporadas>();
         private List<string> _Transportes=new List<string>();
+        private ConfiguracionEstafeta configuracionEstafeta;
         private readonly decimal dReparto=5;
 
         private List<Temporadas> Ganancias
-        { get {
+        {
+            get
+            {
                 if (_Ganancias.Count == 0)
-                { _Ganancias = new List<Temporadas>()
+                {
+                    _Ganancias = new List<Temporadas>()
             {
                 new Temporadas() { dtInicio=new DateTime(2020,12,01),dtfin= new DateTime(2020,12,31),dValor= .10M },
                 new Temporadas() { dtInicio=new DateTime(2020,02,14),dtfin= new DateTime(2020,02,14),dValor=.50M },
@@ -34,18 +41,21 @@ namespace BuenasPracticas.clases
                 new Temporadas() { dtInicio=new DateTime(2020,02,15),dtfin= new DateTime(2020,12,31),dValor=.45M }
             };
                 }
-                return _Ganancias; }
+                return _Ganancias;
+            }
         }
 
-        public List<string> Transportes
-        { get
+        private List<string> Transportes
+        {
+            get
             {
                 if (_Transportes.Count == 0)
                 {
                     _Transportes = new List<string> { { "Marítimo" }, { "Terrestre" } };
                 }
-                return _Transportes; }
+                return _Transportes;
             }
+        }
 
         public decimal ObtenerTiempoRepartoMinutos()
         {

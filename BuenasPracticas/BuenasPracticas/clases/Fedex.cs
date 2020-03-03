@@ -1,4 +1,5 @@
-﻿using BuenasPracticas.Interfaces;
+﻿using BuenasPracticas.DTO;
+using BuenasPracticas.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace BuenasPracticas.clases
         readonly string cTransporte;
         readonly string cEmpresa;
         readonly DateTime dtFechaEnvio;
-        public Fedex(string _cTransporte,DateTime _dtFechaEnvio)
+        public Fedex(string _cTransporte,DateTime _dtFechaEnvio, ConfiguracionFedex configuraciones)
         {
             cTransporte = _cTransporte;
             cEmpresa = "Fedex";
@@ -40,7 +41,7 @@ namespace BuenasPracticas.clases
                 return _Ganancias; }
         }
 
-        public List<string> Transportes
+        private List<string> Transportes
         { get
             {
                 if (_Transportes.Count == 0)
@@ -50,7 +51,7 @@ namespace BuenasPracticas.clases
                 return _Transportes; }
             }
 
-        private Dictionary<string, decimal> LstRepartos = new Dictionary<string, decimal>() {
+        public Dictionary<string, decimal> LstRepartos = new Dictionary<string, decimal>() {
             {"Marítimo",21M },
             { "Terrestre",10M },
             { "Aéreo",0M }

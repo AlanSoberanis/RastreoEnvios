@@ -14,10 +14,11 @@ namespace BuenasPracticas.clases
         {
             Console.ForegroundColor = ConsoleColor.Red;
         }
-
+        
         public string ImprimirMensajeEnvio()
         {
             return "{0}";
         }
+        
     }
 }

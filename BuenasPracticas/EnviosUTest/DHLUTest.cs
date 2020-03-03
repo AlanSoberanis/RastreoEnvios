@@ -1,4 +1,5 @@
 ﻿using BuenasPracticas.clases;
+using BuenasPracticas.DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Globalization;
@@ -8,12 +9,13 @@ namespace EnviosUTest
     [TestClass]
     public class DHLUTest
     {
+        ConfiguracionDHL configuraciones = new ConfiguracionDHL();
 
         [TestMethod]
         public void ObtenerTiempoRepartoMinutos_CalculoTerrestre_SetecientosVeinte()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Terrestre", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Terrestre", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(720, Resultado);
@@ -23,7 +25,7 @@ namespace EnviosUTest
         public void ObtenerTiempoRepartoMinutos_CalculoMaritimo_MilDocientos()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Marítimo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Marítimo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(1200, Resultado);
@@ -33,7 +35,7 @@ namespace EnviosUTest
         public void ObtenerTiempoRepartoMinutos_CalculoAereo_CientoOchenta()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Aéreo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Aéreo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(180, Resultado);
@@ -43,7 +45,7 @@ namespace EnviosUTest
         public void ObtenerUtilidad_PrimerSemestre_PuntoCinco()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerUtilidad();
             Assert.AreEqual(.50M, Resultado);
@@ -53,7 +55,7 @@ namespace EnviosUTest
         public void ObtenerUtilidad_SegundoSemestre_PuntoTres()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerUtilidad();
             Assert.AreEqual(.30M, Resultado);
@@ -64,7 +66,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Terrestre", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Terrestre", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
@@ -74,7 +76,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Aéreo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Aéreo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
         }
@@ -83,7 +85,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Marítimo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Marítimo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
         }
@@ -92,7 +94,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsFalse(Resultado);
         }
@@ -102,7 +104,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             string Resultado = Sut.MostrarValidaciontransporte();
             Assert.AreEqual("DHL no ofrece el servicio de transporte Submarino, te recomendamos cotizar en otra empresa.", Resultado);
         }
@@ -113,7 +115,7 @@ namespace EnviosUTest
        public void ObtenerPaqueteria_General_DevuelveDHL()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new DHL("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new DHL("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             string Resultado = Sut.ObtenerPaqueteria();
             Assert.AreEqual("DHL", Resultado);
         }

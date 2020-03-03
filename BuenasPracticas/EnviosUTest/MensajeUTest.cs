@@ -14,10 +14,8 @@ namespace EnviosUTest
        public void AsignarColores_Entregado_Verde()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
@@ -32,10 +30,8 @@ namespace EnviosUTest
         public void ImprimirMensajeEnvio_Entregado_MensajeEntrega()
         {
             var Doc_Solicitudes =new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen="México";
-            Doc_Solicitudes.cCiudadOrigen="Merida";
-            Doc_Solicitudes.cPaísDestino="México";
-            Doc_Solicitudes.cCiudadDestino="Merida";
+            Doc_Solicitudes.cOrigen="México,Merida";
+            Doc_Solicitudes.cDestino="México,Merida";
             Doc_Solicitudes.cTiempo="10 Horas";
             Doc_Solicitudes.dCostosEnvio=480.00M;
             Doc_Solicitudes.cPaqueteria="Fedex";

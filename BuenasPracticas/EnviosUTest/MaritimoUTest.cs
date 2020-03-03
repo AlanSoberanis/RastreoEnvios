@@ -1,4 +1,5 @@
 ﻿using BuenasPracticas.clases;
+using BuenasPracticas.DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Globalization;
@@ -8,6 +9,7 @@ namespace EnviosUTest
     [TestClass]
    public class MaritimoUTest 
     {
+        ConfiguracionMaritimo configuraciones = new ConfiguracionMaritimo();
 
         [TestMethod]
         public void ObtenerCostoxDistancia_Cuarenta_Uno()
@@ -15,7 +17,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
             Assert.AreEqual(1, Resultado);
@@ -26,7 +28,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
@@ -38,7 +40,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoxDistancia();
             Assert.AreEqual(.30M, Resultado);
@@ -51,7 +53,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(40M, Resultado);
@@ -62,7 +64,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -74,7 +76,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -88,7 +90,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(44M, Resultado);
@@ -99,7 +101,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -111,7 +113,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(396M, Resultado);
         }
@@ -122,7 +124,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(46M, Resultado);
@@ -133,7 +135,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -145,7 +147,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(414M, Resultado);
         }
@@ -156,7 +158,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(49.20M, Resultado);
@@ -167,7 +169,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerCostoEnvio();
@@ -179,7 +181,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerCostoEnvio();
             Assert.AreEqual(442.80M, Resultado);
         }
@@ -190,7 +192,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
 
             DateTime Resultado = Sut.ObtenerFechaEnvio();
             Assert.AreEqual(FechaEnvio, Resultado);
@@ -203,7 +205,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(0M, Resultado);
@@ -214,7 +216,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerRecargo();
@@ -226,7 +228,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerRecargo();
@@ -240,7 +242,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(4M, Resultado);
@@ -251,7 +253,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerRecargo();
@@ -263,7 +265,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(36M, Resultado);
         }
@@ -274,7 +276,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(6M, Resultado);
@@ -285,7 +287,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerRecargo();
@@ -297,7 +299,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(54M, Resultado);
         }
@@ -308,7 +310,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(9.20M, Resultado);
@@ -319,7 +321,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerRecargo();
@@ -331,7 +333,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerRecargo();
             Assert.AreEqual(82.80M, Resultado);
         }
@@ -342,7 +344,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(52.17M, Resultado);
@@ -353,7 +355,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
@@ -365,7 +367,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
@@ -379,7 +381,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(57.97M, Resultado);
@@ -390,7 +392,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
@@ -402,7 +404,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/07/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(1739.13M, Resultado);
         }
@@ -413,7 +415,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(45.36M, Resultado);
@@ -424,7 +426,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
@@ -436,7 +438,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/11/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(1361.05M, Resultado);
         }
@@ -447,7 +449,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(40, FechaEnvio);
+            var Sut = new Maritimo(40, FechaEnvio, configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(74.53M, Resultado);
@@ -458,7 +460,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(500, FechaEnvio);
+            var Sut = new Maritimo(500, FechaEnvio, configuraciones);
 
 
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
@@ -470,7 +472,7 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
             DateTime FechaEnvio = DateTime.ParseExact("02/01/2020 12:00", "dd/MM/yyyy HH:mm", culture);
 
-            var Sut = new Maritimo(1200, FechaEnvio);
+            var Sut = new Maritimo(1200, FechaEnvio, configuraciones);
             decimal Resultado = Sut.ObtenerTiempoEntregaMinutos();
             Assert.AreEqual(2236.02M, Resultado);
         }
@@ -479,7 +481,7 @@ namespace EnviosUTest
         public void ObtenerVelocidad_CuarentaySeis_CuarentaySeis()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Maritimo(800, DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Maritimo(800, DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerVelocidad();
             Assert.AreEqual(46, Resultado);

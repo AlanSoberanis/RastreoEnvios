@@ -1,4 +1,5 @@
 ﻿using BuenasPracticas.clases;
+using BuenasPracticas.DTO;
 using BuenasPracticas.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -9,12 +10,13 @@ namespace EnviosUTest
     [TestClass]
   public  class FedexUTest
     {
+        ConfiguracionFedex configuraciones = new ConfiguracionFedex();
 
         [TestMethod]
         public void ObtenerTiempoRepartoMinutos_Maritimo_MildocientosSesenta()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Marítimo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Marítimo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(1260, Resultado);
@@ -22,7 +24,7 @@ namespace EnviosUTest
         public void ObtenerTiempoRepartoMinutos_Aereo_Cero()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Aéreo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Aéreo", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(0, Resultado);
@@ -32,7 +34,7 @@ namespace EnviosUTest
         public void ObtenerTiempoRepartoMinutos_Terrestre_Seiscientos()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Terrestre", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Terrestre", DateTime.ParseExact("02/03/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerTiempoRepartoMinutos();
             Assert.AreEqual(600, Resultado);
@@ -42,7 +44,7 @@ namespace EnviosUTest
         public void ObtenerUtilidad_Par_PuntoCuatro()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("", DateTime.ParseExact("02/04/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("", DateTime.ParseExact("02/04/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerUtilidad();
             Assert.AreEqual(.40M, Resultado);
@@ -52,7 +54,7 @@ namespace EnviosUTest
         public void ObtenerUtilidad_Impar_PuntoTres()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("", DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("", DateTime.ParseExact("02/05/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             decimal Resultado = Sut.ObtenerUtilidad();
             Assert.AreEqual(.30M, Resultado);
@@ -64,7 +66,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Terrestre", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Terrestre", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
 
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
@@ -75,7 +77,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Aéreo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Aéreo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
         }
@@ -84,7 +86,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Marítimo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Marítimo", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsTrue(Resultado);
         }
@@ -93,7 +95,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             bool Resultado = Sut.ValidarTransporte();
             Assert.IsFalse(Resultado);
         }
@@ -103,7 +105,7 @@ namespace EnviosUTest
         {
 
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("Submarino", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             string Resultado = Sut.MostrarValidaciontransporte();
             Assert.AreEqual("Fedex no ofrece el servicio de transporte Submarino, te recomendamos cotizar en otra empresa.", Resultado);
         }
@@ -114,7 +116,7 @@ namespace EnviosUTest
         public void ObtenerPaqueteria_General_DevuelveFedex()
         {
             IFormatProvider culture = new CultureInfo("ES-MX", true);
-            var Sut = new Fedex("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture));
+            var Sut = new Fedex("", DateTime.ParseExact("02/09/2020 12:00", "dd/MM/yyyy HH:mm", culture), configuraciones);
             string Resultado = Sut.ObtenerPaqueteria();
             Assert.AreEqual("Fedex", Resultado);
         }

@@ -1,4 +1,5 @@
-﻿using BuenasPracticas.Interfaces;
+﻿using BuenasPracticas.DTO;
+using BuenasPracticas.Interfaces;
 using System;
 
 namespace BuenasPracticas.clases
@@ -14,7 +15,7 @@ namespace BuenasPracticas.clases
         readonly decimal CostoEscala = 200M;
         readonly decimal dtiempoEscala =6M;
 
-        public Aereo(decimal dDistancia, DateTime dtFechaEnvio)
+        public Aereo(decimal dDistancia, DateTime dtFechaEnvio,ConfiguracionAereo configuraciones)
         {
             this.dDistancia = dDistancia;
             this.dtFechaEnvio = dtFechaEnvio;

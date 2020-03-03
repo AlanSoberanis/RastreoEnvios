@@ -16,7 +16,7 @@ namespace BuenasPracticas.clases
         private Dictionary<string, decimal> LstOpciones;
         public IMensajesColor Mensaje;
         private string cMensajeEnvio = string.Empty;
-
+        private IBitacora Bitacora;
         readonly string cPaqueteria;
 
         public Envios(IPaqueteria _Paqueteria, ITransporte _Transporte, IFormatoTiempo _FormatoTiempo,
@@ -44,10 +44,12 @@ namespace BuenasPracticas.clases
                 solicitudEnvio.dCostosEnvio = ObtenerCostos();
                 solicitudEnvio.dtFechaEntrega=ObtenerFechaentrega();
                 solicitudEnvio.cTiempo=ObtenerTiempoEnvio();
+                solicitudEnvio.cTipotiempo = ObtenerTipoTiempo();
                 EstatusEnvio();
                 cMensajeEnvio = GenerarMensaje();
                 BuscarOtrasOpciones(ref LstOpciones);
                 cMensajeEnvio += SeleccionarOpcion(ref LstOpciones);
+                Bitacora.GenerarRegistro(cMensajeEnvio);
                 return cMensajeEnvio;
             }
             catch (Exception ex)
@@ -62,10 +64,12 @@ namespace BuenasPracticas.clases
             if (solicitudEnvio.dtFechaEntrega < solicitudEnvio.dtFechaActual)
             {
                 Mensaje = new Mensaje(solicitudEnvio);
+                Bitacora=new Bitacoraentrega(solicitudEnvio.cPaqueteria,solicitudEnvio.cTipotiempo);
             }
             else
             {
                 Mensaje = new MensajeEnCamino(solicitudEnvio);
+                Bitacora = new BitacoraPendiente(solicitudEnvio.cPaqueteria, solicitudEnvio.cTipotiempo);
             }
         }
 
@@ -117,7 +121,20 @@ namespace BuenasPracticas.clases
 
             return FormatoTiempo.ObtenerFormatoTiempo(decimal.Parse(Tiempo.TotalMinutes.ToString()));
         }
+        public string ObtenerTipoTiempo()
+        {
+            TimeSpan Tiempo = new TimeSpan();
+            if (solicitudEnvio.dtFechaEntrega < solicitudEnvio.dtFechaActual)
+            {
+                Tiempo = solicitudEnvio.dtFechaActual.Subtract(solicitudEnvio.dtFechaEntrega);
+            }
+            else
+            {
+                Tiempo = solicitudEnvio.dtFechaEntrega.Subtract(solicitudEnvio.dtFechaActual);
+            }
 
+            return FormatoTiempo.ObtenerTipoTiempo(decimal.Parse(Tiempo.TotalMinutes.ToString()));
+        }
         public string SeleccionarOpcion(ref Dictionary<string, decimal> _lstOpciones)
         {
             string cAdicional = string.Empty;

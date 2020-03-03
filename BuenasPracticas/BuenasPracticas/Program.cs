@@ -2,8 +2,8 @@
 using BuenasPracticas.DTO;
 using BuenasPracticas.Factory;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Text;
 
 namespace BuenasPracticas
@@ -13,53 +13,55 @@ namespace BuenasPracticas
 
         static void Main(string[] args)
         {
-            decimal dDistancia = 0;
-            string cFechaPedido = string.Empty;
-            IFormatProvider culture = new CultureInfo("ES-MX", true);
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            List<SolicitudEnvio> LstSolicitudes = new List<SolicitudEnvio>();
+            IFormatProvider culture = new CultureInfo("ES-MX", true);
 
-            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + "../../Envios.csv"),Encoding.GetEncoding("windows-1254"),true);
+            Configuraciones configuraciones = new Configuraciones();
+            ConfiguracionesDTO Configuracion = configuraciones.ObtenerConfiguraciones();
+            configuraciones.Bitacora();
+            string Comando = string.Empty;
+            do
+            {
+                Console.WriteLine("Seleccione el origen de los envíos:");
+                Comando = Console.ReadLine();
+                try
+                {
+                    AdaptadorLectura Adaptador = new AdaptadorLectura(Comando, culture);
+                    Adaptador.ObtenerPaquetes(ref LstSolicitudes);
+                }
+                catch(Exception Ex)
+                {
+                    Console.WriteLine(Ex.Message);
+                    Comando = string.Empty;
+                }
 
-            while (!reader.EndOfStream)
+            }
+            while (Comando == string.Empty);
+
+            
+            foreach (SolicitudEnvio solicitud in LstSolicitudes)
             {
                 try
                 {
-                    var cEnvios = reader.ReadLine().Split(',');
-
-
-                    SolicitudEnvio solicitud = new SolicitudEnvio();
-
-                    dDistancia = 0;
-                    solicitud.cPaqueteria = cEnvios[1];
-                    solicitud.cTransporte = cEnvios[2];
-                    cFechaPedido = cEnvios[3];
-                    solicitud.dtFechaEnvio = DateTime.ParseExact(cFechaPedido, "dd/MM/yyyy HH:mm", culture);
-                    solicitud.cPaísOrigen = cEnvios[4];
-                    solicitud.cCiudadOrigen = cEnvios[5];
-                    solicitud.cPaísDestino = cEnvios[6];
-                    solicitud.cCiudadDestino = cEnvios[7];
-                    solicitud.dtFechaActual = DateTime.Now;
-                    if (!decimal.TryParse(cEnvios[0], out dDistancia))
-                        dDistancia = 0;
-
-                    solicitud.dDistancia = dDistancia;
-
-                    FactoryEnvios factoryEnvios = new FactoryEnvios(solicitud);
+                    FactoryEnvios factoryEnvios = new FactoryEnvios(solicitud, Configuracion);
                     IEnviosPaquetes Envio = factoryEnvios.CrearEnvio();
-
                     Console.WriteLine(Envio.ProcesarEnvios());
                     Console.WriteLine("");
                 }
+
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
                     Console.WriteLine();
                 }
             }
-            Console.WriteLine("Continuar...");
+            Console.WriteLine("finalizado...");
             Console.ReadKey();
         }
 
+
+        
     }
 }
 

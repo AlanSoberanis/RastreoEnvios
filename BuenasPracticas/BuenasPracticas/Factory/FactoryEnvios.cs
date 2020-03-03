@@ -13,37 +13,35 @@ namespace BuenasPracticas.Factory
         readonly ITransporte Transporte;
         readonly List<IPaqueteria> PaqueteriaCompetencia;
         readonly IFormatoTiempo Tiempos;
-
         readonly IMensajesColor Mensajes;
         readonly SolicitudEnvio SolicitudEnvio;
 
-        public FactoryEnvios(SolicitudEnvio _solicitudEnvio)
+        public FactoryEnvios(SolicitudEnvio _solicitudEnvio, ConfiguracionesDTO _configuraciones)
         {
             SolicitudEnvio = _solicitudEnvio;
             PaqueteriaCompetencia = new List<IPaqueteria>();
-
+            Tiempos = crearformatosTiempo();
             Mensajes = new ErrorMensaje();
-
 
             switch (SolicitudEnvio.cPaqueteria)
             {
                 case "Fedex":
-                    Paqueteria = new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio);
-                    PaqueteriaCompetencia.Add(new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
-                    PaqueteriaCompetencia.Add(new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
+                    Paqueteria = new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio,_configuraciones.ConfiguracionFedex);
+                    PaqueteriaCompetencia.Add(new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionDHL));
+                    PaqueteriaCompetencia.Add(new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionEstafeta));
                     break;
 
                 case "DHL":
-                    Paqueteria = new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio);
-                    PaqueteriaCompetencia.Add(new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
-                    PaqueteriaCompetencia.Add(new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
+                    Paqueteria = new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionDHL);
+                    PaqueteriaCompetencia.Add(new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionFedex));
+                    PaqueteriaCompetencia.Add(new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionEstafeta));
 
                     break;
 
                 case "Estafeta":
-                    Paqueteria = new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio);
-                    PaqueteriaCompetencia.Add(new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
-                    PaqueteriaCompetencia.Add(new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio));
+                    Paqueteria = new Estafeta(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio,_configuraciones.ConfiguracionEstafeta);
+                    PaqueteriaCompetencia.Add(new Fedex(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionFedex));
+                    PaqueteriaCompetencia.Add(new DHL(SolicitudEnvio.cTransporte, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionDHL));
 
                     break;
                 default:
@@ -59,32 +57,38 @@ namespace BuenasPracticas.Factory
                 switch (SolicitudEnvio.cTransporte)
             {
                 case "Marítimo":
-                    Transporte = new Maritimo(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio);
+                    Transporte = new Maritimo(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio,_configuraciones.ConfiguracionMaritimo);
                     break;
 
                 case "Terrestre":
-                    Transporte = new Terrestre(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio);
+                    Transporte = new Terrestre(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionTerrestre);
                     break;
 
                 case "Aéreo":
-                    Transporte = new Aereo(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio);
+                    Transporte = new Aereo(SolicitudEnvio.dDistancia, SolicitudEnvio.dtFechaEnvio, _configuraciones.ConfiguracionAereo);
                     break;
                 default:
                     throw new Exception(string.Format(Mensajes.ImprimirMensajeEnvio() , MostrarValidaciontransporte()));
                     break;
             }
 
-            Tiempos = crearformatosTiempo();
         }
+
 
         private IFormatoTiempo crearformatosTiempo()
         {
             Minutos FormatoMinutos = new Minutos();
             Horas FormatoHoras = new Horas();
             Dias FormatoDias = new Dias();
+            Semanas FormatoSemanas = new Semanas();
             Meses FormatoMeses = new Meses();
-
-            FormatoDias.Siguiente(FormatoMeses);
+            Bimestres FormatoBimenstres = new Bimestres();
+            Anios FormatoAnios = new Anios();
+            
+            FormatoBimenstres.Siguiente(FormatoAnios);
+            FormatoMeses.Siguiente(FormatoBimenstres);
+            FormatoSemanas.Siguiente(FormatoMeses);
+            FormatoDias.Siguiente(FormatoSemanas);
             FormatoHoras.Siguiente(FormatoDias);
             FormatoMinutos.Siguiente(FormatoHoras);
 
@@ -93,6 +97,7 @@ namespace BuenasPracticas.Factory
 
         public IEnviosPaquetes CrearEnvio()
         {
+            
 
             Envios envios = new Envios(Paqueteria, Transporte, Tiempos, SolicitudEnvio);
 
@@ -128,7 +133,7 @@ namespace BuenasPracticas.Factory
         {
             return Paqueteria.MostrarValidaciontransporte();
         }
-
+        
     }
 
 }

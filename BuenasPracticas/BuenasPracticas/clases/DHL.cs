@@ -13,7 +13,7 @@ namespace BuenasPracticas.clases
         readonly string cEmpresa;
         readonly DateTime dtFechaEnvio;
 
-        public DHL(string _cTransporte, DateTime _dtFechaEnvio)
+        public DHL(string _cTransporte, DateTime _dtFechaEnvio, ConfiguracionDHL configuraciones)
         {
             cTransporte = _cTransporte;
             cEmpresa = "DHL";
@@ -21,8 +21,9 @@ namespace BuenasPracticas.clases
         }
 
         private List<Temporadas> _Ganancias =new List<Temporadas>();
-        
         private List<string> _Transportes=new List<string>();
+        Dictionary<string, decimal> _lstRepartos = new Dictionary<string, decimal>();
+
         private List<Temporadas> Ganancias
         { get {
                 if (_Ganancias.Count == 0)
@@ -35,20 +36,32 @@ namespace BuenasPracticas.clases
                 return _Ganancias; }
         }
 
-        public List<string> Transportes
-        { get
+        private List<string> Transportes
+        {
+            get
             {
                 if (_Transportes.Count == 0)
                 {
                     _Transportes = new List<string> { { "Marítimo" }, { "Terrestre" }, { "Aéreo" } };
                 }
-                return _Transportes; }
+                return _Transportes;
             }
-        private readonly Dictionary<string, decimal> LstRepartos = new Dictionary<string, decimal>() {
-            {"Marítimo",20 },
-            { "Terrestre",12 },
-            { "Aéreo",3 }
-        };
+        }
+
+        private Dictionary<string, decimal> LstRepartos
+        {
+            get
+            {
+                if (!_lstRepartos.Any())
+                {
+                    _lstRepartos = new Dictionary<string, decimal>() {
+                    {"Marítimo",20 },
+                    { "Terrestre",12 },
+                    { "Aéreo",3 }};
+                }
+                return _lstRepartos;
+            }
+        }
 
 
         public decimal ObtenerTiempoRepartoMinutos()

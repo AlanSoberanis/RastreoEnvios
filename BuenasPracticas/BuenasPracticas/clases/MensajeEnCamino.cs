@@ -17,14 +17,16 @@ namespace BuenasPracticas.clases
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
         }
+        
 
         public string ImprimirMensajeEnvio()
         {
             return string.Format("Tu paquete ha salido de {0} y llegará a {1} " +
                 "dentro de {2} y tendrá un costo de ${3}" +
-                "(Cualquier reclamación con {4}).",SolicitudEnvio.cPaísOrigen + "," + SolicitudEnvio.cCiudadOrigen,
-               SolicitudEnvio.cPaísDestino + "," + SolicitudEnvio.cCiudadDestino,
+                "(Cualquier reclamación con {4}).",SolicitudEnvio.cOrigen ,
+               SolicitudEnvio.cDestino,
                SolicitudEnvio.cTiempo, SolicitudEnvio.dCostosEnvio, SolicitudEnvio.cPaqueteria);
         }
+        
     }
 }

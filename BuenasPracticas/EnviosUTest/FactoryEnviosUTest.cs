@@ -9,6 +9,7 @@ namespace EnviosUTest
     [TestClass]
     public  class FactoryEnviosUTest
     {
+        ConfiguracionesDTO configuraciones = new ConfiguracionesDTO();
         [TestMethod]
         public void FactoryEnvios_FedezTerrestre_ExceptionPaqueteriaNoRegistrada()
         {
@@ -16,7 +17,7 @@ namespace EnviosUTest
             Doc_Solicitudes.cPaqueteria = "Fedez";
             Doc_Solicitudes.cTransporte = "Terrestre";
 
-            var SUT = Assert.ThrowsException<Exception>(() => new FactoryEnvios(Doc_Solicitudes));
+            var SUT = Assert.ThrowsException<Exception>(() => new FactoryEnvios(Doc_Solicitudes, configuraciones));
             Assert.AreEqual("La Paquetería: Fedez no se encuentra registrada en nuestra red de distribución.", SUT.Message);
         }
 
@@ -26,7 +27,7 @@ namespace EnviosUTest
             var Doc_Solicitudes = new SolicitudEnvio();
             Doc_Solicitudes.cPaqueteria = "Fedex";
             Doc_Solicitudes.cTransporte = "Submarino";
-            var SUT= Assert.ThrowsException<Exception>(() => new FactoryEnvios(Doc_Solicitudes));
+            var SUT= Assert.ThrowsException<Exception>(() => new FactoryEnvios(Doc_Solicitudes,configuraciones));
             Assert.AreEqual("Fedex no ofrece el servicio de transporte Submarino, te recomendamos cotizar en otra empresa.", SUT.Message);
 
         }
@@ -36,16 +37,14 @@ namespace EnviosUTest
         public void CrearEnvio_FedexTerrestre_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
             Doc_Solicitudes.cTransporte = "Terrestre";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta=SUT.CrearEnvio();
             
             Assert.IsInstanceOfType(Respuesta,typeof(Envios));
@@ -57,16 +56,14 @@ namespace EnviosUTest
         public void CrearEnvio_FedexMarino_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
             Doc_Solicitudes.cTransporte = "Marítimo";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -75,16 +72,14 @@ namespace EnviosUTest
         public void CrearEnvio_FedexAereo_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
             Doc_Solicitudes.cTransporte = "Aéreo";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -94,16 +89,14 @@ namespace EnviosUTest
         public void CrearEnvio_DHLTerrestre_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "DHL";
             Doc_Solicitudes.cTransporte = "Terrestre";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -113,16 +106,14 @@ namespace EnviosUTest
         public void CrearEnvio_DHLMarino_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "DHL";
             Doc_Solicitudes.cTransporte = "Marítimo";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -132,16 +123,14 @@ namespace EnviosUTest
         public void CrearEnvio_DHLAereo_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "DHL";
             Doc_Solicitudes.cTransporte = "Aéreo";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -152,16 +141,14 @@ namespace EnviosUTest
         public void CrearEnvio_EstafetaTerrestre_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Estafeta";
             Doc_Solicitudes.cTransporte = "Terrestre";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));
@@ -171,16 +158,14 @@ namespace EnviosUTest
         public void CrearEnvio_EstafetaMarino_NoException()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Estafeta";
             Doc_Solicitudes.cTransporte = "Marítimo";
 
-            var SUT = new FactoryEnvios(Doc_Solicitudes);
+            var SUT = new FactoryEnvios(Doc_Solicitudes,configuraciones);
             var Respuesta = SUT.CrearEnvio();
 
             Assert.IsInstanceOfType(Respuesta, typeof(Envios));

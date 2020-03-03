@@ -33,8 +33,10 @@ namespace BuenasPracticas.clases
         }
 
         List<Distancia> _LstDistancia = new List<Distancia>();
-       
-            List<Distancia> LstDistancia
+        private DateTime dtFechaEnvio;
+        private ConfiguracionTerrestre configuracionTerrestre;
+
+        List<Distancia> LstDistancia
         {
             get
             {
@@ -52,11 +54,18 @@ namespace BuenasPracticas.clases
             }
         }
 
-        public Terrestre(decimal _dDistancia, DateTime  _dtEnvio)
+        public Terrestre(decimal _dDistancia, DateTime  _dtEnvio, Configuraciones configuraciones)
         {
             
             this.dDistancia = _dDistancia;
             this.dtEnvio = _dtEnvio;
+        }
+
+        public Terrestre(decimal dDistancia, DateTime dtFechaEnvio, ConfiguracionTerrestre configuracionTerrestre)
+        {
+            this.dDistancia = dDistancia;
+            this.dtFechaEnvio = dtFechaEnvio;
+            this.configuracionTerrestre = configuracionTerrestre;
         }
 
         public decimal ObtenerCostoxDistancia()

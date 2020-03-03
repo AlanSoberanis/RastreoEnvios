@@ -11,10 +11,10 @@ namespace BuenasPracticas.clases
         {
 
             string Tiempos = string.Empty;
-            decimal dConvercion = _dTiempos / 24;
-            if(formatoTiempo!=null && dConvercion>=30)
+            decimal dConvercion = (_dTiempos/60) / 24;
+            if(formatoTiempo!=null && dConvercion>=7)
             {
-                Tiempos = formatoTiempo.ObtenerFormatoTiempo(dConvercion);
+                Tiempos = formatoTiempo.ObtenerFormatoTiempo(_dTiempos);
             }
             else
             {
@@ -25,6 +25,22 @@ namespace BuenasPracticas.clases
             return Tiempos;
             
             
+        }
+
+        public string ObtenerTipoTiempo(decimal _dTiempos)
+        {
+            string Tiempos = string.Empty;
+            decimal dConvercion = (_dTiempos / 60) / 24;
+            if (formatoTiempo != null && dConvercion >= 7)
+            {
+                Tiempos = formatoTiempo.ObtenerTipoTiempo(_dTiempos);
+            }
+            else
+            {
+                Tiempos = "Días";
+            }
+
+            return Tiempos;
         }
 
         public void Siguiente(IFormatoTiempo _formatoTiempo)

@@ -15,7 +15,7 @@ namespace BuenasPracticas.clases
             
             if (formatoTiempo != null && dConvercion >= 60)
             {
-                Tiempos = formatoTiempo.ObtenerFormatoTiempo(dConvercion);
+                Tiempos = formatoTiempo.ObtenerFormatoTiempo(_dTiempos);
             }
             else
             {
@@ -25,6 +25,25 @@ namespace BuenasPracticas.clases
 
             return Tiempos;
 
+
+        }
+
+        public string ObtenerTipoTiempo(decimal _dTiempos)
+        {
+            string Tiempos = string.Empty;
+
+            decimal dConvercion = _dTiempos;
+
+            if (formatoTiempo != null && dConvercion >= 60)
+            {
+                Tiempos = formatoTiempo.ObtenerTipoTiempo(_dTiempos);
+            }
+            else
+            {
+                Tiempos = "Minutos";
+            }
+
+            return Tiempos;
 
         }
 

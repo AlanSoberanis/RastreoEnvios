@@ -13,10 +13,8 @@ namespace EnviosUTest
         public void AsignarColores()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
@@ -31,10 +29,8 @@ namespace EnviosUTest
         public void ImprimirMensajeEnvio()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
@@ -43,8 +39,8 @@ namespace EnviosUTest
 
             string Respuesta = string.Format("Tu paquete ha salido de {0} y llegará a {1} " +
                 "dentro de {2} y tendrá un costo de ${3}" +
-                "(Cualquier reclamación con {4}).", "México" + "," + "Merida",
-               "México" + "," + "Merida",
+                "(Cualquier reclamación con {4}).", "Merida,Motul",
+               "Merida,Motul",
               "10 Horas", 480.00M, "Fedex");
 
 

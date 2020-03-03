@@ -4,6 +4,6 @@
     {
         string ObtenerFormatoTiempo(decimal _dTiempos);
         void Siguiente(IFormatoTiempo _formatoTiempo);
-        
+        string ObtenerTipoTiempo(decimal _dTiempos);
     }
 }

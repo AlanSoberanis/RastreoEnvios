@@ -13,12 +13,28 @@ namespace BuenasPracticas.clases
             decimal dConvercion = _dTiempos / 60;
             if (formatoTiempo != null && dConvercion >= 24)
             {
-                Tiempos = formatoTiempo.ObtenerFormatoTiempo(dConvercion);
+                Tiempos = formatoTiempo.ObtenerFormatoTiempo(_dTiempos);
             }
             else
             {
                 dConvercion = Math.Truncate(dConvercion);
                 Tiempos = dConvercion.ToString() + " Hora" + (dConvercion > 1 ? "s" : "");
+            }
+
+            return Tiempos;
+        }
+
+        public string ObtenerTipoTiempo(decimal _dTiempos)
+        {
+            string Tiempos = string.Empty;
+            decimal dConvercion = _dTiempos / 60;
+            if (formatoTiempo != null && dConvercion >= 24)
+            {
+                Tiempos = formatoTiempo.ObtenerTipoTiempo(_dTiempos);
+            }
+            else
+            {
+                Tiempos ="Horas";
             }
 
             return Tiempos;

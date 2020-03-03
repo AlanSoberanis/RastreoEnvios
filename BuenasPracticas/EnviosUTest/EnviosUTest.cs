@@ -61,10 +61,8 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
 
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Ticul";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Motul";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cPaqueteria = "Estafeta";
             Doc_Solicitudes.cTransporte = "Terrestre";
             Doc_Solicitudes.dDistancia = 80;
@@ -73,8 +71,8 @@ namespace EnviosUTest
 
             string Respuesta = string.Format("Tu paquete salió de {0} y llegó a {1} " +
               "hace {2} y tuvo un costo de ${3}" +
-              "(Cualquier reclamación con {4}).", "México" + "," + "Ticul",
-              "México" + "," + "Motul",
+              "(Cualquier reclamación con {4}).", "Merida,Motul",
+              "Merida,Motul",
              "1 Hora", 1160.00M, "Estafeta");
 
 
@@ -145,10 +143,8 @@ namespace EnviosUTest
             IFormatProvider culture = new CultureInfo("ES-MX", true);
 
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
@@ -173,10 +169,8 @@ namespace EnviosUTest
         public void GenerarMensaje_Entregado_Mensaje()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";
@@ -205,10 +199,8 @@ namespace EnviosUTest
         public void GenerarMensaje_EnCamino_Mensaje()
         {
             var Doc_Solicitudes = new SolicitudEnvio();
-            Doc_Solicitudes.cPaísOrigen = "México";
-            Doc_Solicitudes.cCiudadOrigen = "Merida";
-            Doc_Solicitudes.cPaísDestino = "México";
-            Doc_Solicitudes.cCiudadDestino = "Merida";
+            Doc_Solicitudes.cOrigen = "Merida,Motul";
+            Doc_Solicitudes.cDestino = "Merida,Motul";
             Doc_Solicitudes.cTiempo = "10 Horas";
             Doc_Solicitudes.dCostosEnvio = 480.00M;
             Doc_Solicitudes.cPaqueteria = "Fedex";

@@ -9,16 +9,16 @@ namespace EnviosUTest
    public class MesesUTest 
     {
         [TestMethod]
-        public void ObtenerFormatoTiempo_CincuentaDias_()
+        public void ObtenerFormatoTiempo_CincuentaDias_RegresaMes()
         {
             var Sut = new Meses();
-             string Resultado = Sut.ObtenerFormatoTiempo(50M);
+             string Resultado = Sut.ObtenerFormatoTiempo(72000M);
             Assert.AreEqual("1 Mes", Resultado);
 
         }
 
         [TestMethod]
-        public void Siguiente_InvocandoHoras_CeroVez()
+        public void Siguiente_InvocandoMeses_CeroVez()
         {
             int contador = 0;
             var Sut = new Meses();
