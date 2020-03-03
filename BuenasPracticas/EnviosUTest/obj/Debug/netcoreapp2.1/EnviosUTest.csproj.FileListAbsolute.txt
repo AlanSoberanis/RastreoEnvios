@@ -1,0 +1,17 @@
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.csprojAssemblyReference.cache
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.csproj.CoreCompileInputs.cache
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.AssemblyInfoInputs.cache
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.AssemblyInfo.cs
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\EnviosUTest.deps.json
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\EnviosUTest.runtimeconfig.json
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\EnviosUTest.runtimeconfig.dev.json
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\EnviosUTest.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\EnviosUTest.pdb
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\BuenasPracticas.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\bin\Debug\netcoreapp2.1\BuenasPracticas.pdb
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.csproj.CopyComplete
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.dll
+C:\Users\alan.soberanis\CURSOS\BuenasPracticas\EnviosUTest\obj\Debug\netcoreapp2.1\EnviosUTest.pdb
